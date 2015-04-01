@@ -42,7 +42,8 @@ public class HttpRequest extends ClientRequest {
         POST("POST"),
         DELETE("DELETE"),
         OPTIONS("OPTIONS"),
-        HEAD("HEAD");
+        HEAD("HEAD"),
+        PATCH("PATCH");
 
         private final String verb; // http method
 
@@ -207,13 +208,13 @@ public class HttpRequest extends ClientRequest {
     @Override
     public HttpRequest replaceUri(URI newURI) {
         return (new Builder()).uri(newURI)
-        .headers(this.httpHeaders)
+                .headers(this.httpHeaders)
         .overrideConfig(this.getOverrideConfig())
-        .queryParams(this.queryParams)
+                .queryParams(this.queryParams)
         .setRetriable(this.isRetriable())
         .loadBalancerKey(this.getLoadBalancerKey())
-        .verb(this.getVerb())
-        .entity(this.entity)
-        .build();        
+                .verb(this.getVerb())
+                .entity(this.entity)
+                .build();
     }
 }
